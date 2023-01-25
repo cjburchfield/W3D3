@@ -39,8 +39,24 @@ def rec_range_sum(start_num, end_num)
 
 end
 
-p rec_range_sum(1,5)
-
-def exponentiation()
+# recursion 1 of exponentiation
+def exponentiation(base, exp) #2,1
+    return 1 if exp == 0
+    return base if exp == 1
+    base * exponentiation(base, exp - 1) #2 * exp(2, 1)
 end
+
+# recursion 2 of exponentiation
+# def exponentiation(base, exp)
+#     return 1 if exp == 0
+#     return base if exp == 1
+#     if exp.even?
+#         exponentiation(base, exp/2) ** 2
+#     elsif exp.odd?
+#         base * (exponentiation(base, (exp -1)/2) ** 2)
+#     end
+
+# end
+
+p exponentiation(0,1)
 
