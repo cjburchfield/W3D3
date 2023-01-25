@@ -75,25 +75,27 @@
 # && array == array.flatten
 class Array
     
-    def deep_dup(element)
-       return [element] if !element.is_a?(Array)
+    def deep_dup(self)
+       
 
        dupe = []
 
-      element.each do |ele|
+      self.each do |ele|
             if ele.is_a?(Array)
-                dupe + [ele]
+               dupe.concat(deep_dup(ele))
             else
-               deep_dup(ele)
+               dupe.concat([ele].dup) 
             end
         end
 
         dupe
     end
 
-    puts deep_dup([["jamie"], [1,2,3]])
+ 
      
 
 
     end
 end
+
+   puts deep_dup([["jamie"], [1,2,3]])
