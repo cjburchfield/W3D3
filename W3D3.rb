@@ -1,4 +1,4 @@
-def range(start_num,end_num) #iterative
+def range(start_num,end_num) #iterative range
     return [] if end_num < start_num 
     arr = []
     (start_num...end_num).each do |i|
@@ -8,14 +8,16 @@ def range(start_num,end_num) #iterative
     arr
 end
 
-#recursive
+#recursive range
 def rec_range(start_num,end_num) #1,5
     return [] if end_num < start_num
-    return [start_num] if start_num == 1 
-    [start_num] + rec_range(start_num + 1...end_num) 
-    
-
+    return [] if start_num == end_num 
+    # last_num = end_num -1
+    rec_range(start_num, end_num - 1) + [end_num - 1]
 end
+
+# p rec_range(1,5)
+
 
 def range_sum(start_num,end_num) #iterative
     arr = range(start_num,end_num)
@@ -23,9 +25,22 @@ def range_sum(start_num,end_num) #iterative
     arr.each do |num|
         sum += num
     end
-
     sum
 end
 
+#recursive_sum
+def rec_range_sum(start_num, end_num)
+    #range 1,5
+    #1 +2 + 3 + 4
+    range = rec_range(start_num, end_num)
+    return 0 if range.length == 0 
+    last_num = range.pop
+    rec_range_sum(start_num, last_num) + last_num    
 
-p range_sum(1,5)
+end
+
+p rec_range_sum(1,5)
+
+def exponentiation()
+end
+
