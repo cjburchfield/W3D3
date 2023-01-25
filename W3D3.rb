@@ -75,27 +75,68 @@
 # && array == array.flatten
 class Array
     
-    def deep_dup(self)
-       
-
-       dupe = []
-
-      self.each do |ele|
+    def deep_dup
+   
+      self.map do |ele|
             if ele.is_a?(Array)
-               dupe.concat(deep_dup(ele))
+               ele.deep_dup
             else
-               dupe.concat([ele].dup) 
+               ele.dup 
             end
         end
-
-        dupe
-    end
-
- 
-     
-
 
     end
 end
 
-   puts deep_dup([["jamie"], [1,2,3]])
+
+# def deep_dup
+       
+#    dupe = []
+
+#    self.each do |ele|
+#          if ele.is_a?(Array)
+#             dupe.concat([ele.deep_dup])
+#          else
+#             dupe.concat([ele].dup) 
+#          end
+#      end
+
+#      dupe
+#  end
+
+
+# def fibonacci(n)
+#    return [0] if n == 0
+#    return [1] if n == 1
+
+#    seq = [0,1,1]
+
+#    while seq.length < n
+#       one_back = seq[-1]
+#       two_back = seq[-2]
+#       next_num = one_back + two_back
+#       seq << next_num
+#    end
+
+#    return seq
+
+# end
+
+#[0,1,1,2,3,5,8,13]
+
+def fibonacci(n) #n = array length of fibonacci sequence
+   return [] if n == 0
+   return [0] if n == 1
+   return [0,1] if n == 2
+
+   arr = [0,1,1]
+   one_back = arr[-1]
+   two_back = arr[-2]
+   next_num = one_back + two_back
+
+   fibonacci(n-1) + next_num
+
+   
+end
+
+p fibonacci(5)
